@@ -1,5 +1,5 @@
 # wudimei template engine
-Wudimeicom/template is a php template engine like blade,They aren't the same.
+Wudimei/template is a php template engine like blade,They aren't the same.
 
 
 # License
@@ -7,7 +7,7 @@ This software is distributed under the [LGPL 2.1](http://www.gnu.org/licenses/lg
 
 # Installation
 ```sh
-composer require wudimeicom/template:dev-main
+composer require wudimei/template:dev-main
 ```
 
 # Usage
