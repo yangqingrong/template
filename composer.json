@@ -1,10 +1,10 @@
 {
-    "name": "wudimeicom/template",
+    "name": "wudimei/template",
     "version" :"0.1",
-    "description": "Wudimeicom/template is a php template engine like blade",
+    "description": "Wudimei/template is a php template engine like blade",
     "type": "library",
     "keywords":["template","view"],
-    "homepage":"https://github.com/wudimeicom/template",
+    "homepage":"https://github.com/wudimei/template",
     "license": "LGPL-2.1-only",
     "authors": [
         {
