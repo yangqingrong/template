@@ -1,0 +1,25 @@
+<?php 
+
+class view_demo_comment{ 
+
+public function M($V){ 
+extract($V);
+$_ ='';
+$_ .= ' the comment will be removed <hr /> ';
+ /* 
+you will not saw me!!
+ */ 
+
+$_ .= '<hr /> hello <hr /> ';
+ /* 
+because the view engine will removed me automatically.
+ */ 
+
+$_ .= '<hr /> ';
+
+$_ .= ' <hr /> bb ';
+return $_;
+} 
+
+
+}  ?>

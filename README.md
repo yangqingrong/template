@@ -3,7 +3,7 @@ Wudimei/template is a php template engine like blade,They aren't the same.
 
 
 # License
-This software is distributed under the [LGPL 2.1](http://www.gnu.org/licenses/lgpl-2.1.html) license, along with the [GPL Cooperation Commitment](https://gplcc.github.io/gplcc/). Please read LICENSE for information on the software availability and distribution.
+This software is distributed under The MIT License (MIT). Please read LICENSE for information on the software availability and distribution.
 
 # Installation
 ```sh

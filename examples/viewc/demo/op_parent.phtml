@@ -53,7 +53,7 @@ $_ ='';
 $_ .= ' ';
  $_ .= parent::content($V); 
 $_ .= ' <h1> ';
- $_ .=  htmlspecialchars($title); 
+ $_ .=  htmlspecialchars( $title ); 
 $_ .= ' </h1> ';
 return $_;
 } 

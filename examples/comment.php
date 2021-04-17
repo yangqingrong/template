@@ -9,10 +9,9 @@
 require_once __DIR__ . '/init.php';
 
 
-$vars =[];
-$vars['score'] = 85;
+$name ='Yang Qing-rong';
 
 
-$content = $template->fetch('demo.ifelse',$vars);
-echo $content;
+echo $template->fetch('demo.comment',compact('name'));
+
 ?>

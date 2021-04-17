@@ -1,0 +1,43 @@
+<?php 
+
+class view_demo_keep{ 
+
+public function M($V){ 
+extract($V);
+$_ ='';
+$_ .= '<h3>rendering the code without ';
+$_ .='@'; 
+$_ .= 'keep and ';
+$_ .='@'; 
+$_ .= 'endkeep</h3> ';
+ $_ .=  htmlspecialchars( $name ); 
+$_ .= ' ';
+ 
+  $_ .= $name;
+ 
+
+$_ .= '<hr /> <h3>keep it as original looking </h3> ';
+$_ .= '
+
+{{$name}}
+@php
+  $_ .= $name;
+@endphp
+
+';
+
+$_ .= '<hr /> <h3>keep it as original looking again</h3> ';
+$_ .= '
+
+{{$name}}
+@php
+  $_ .= $name;
+@endphp
+
+';
+
+return $_;
+} 
+
+
+}  ?>

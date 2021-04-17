@@ -7,11 +7,17 @@
  * 
  */
 require_once __DIR__ . '/init.php';
+require_once __DIR__ . '/functions.php';
 
-
+/*
+echo preg_replace_callback('#([a-zA-Z0-9\_]*)\s*(\((([^()]|(?R))*)?\))?#',function( $m){
+	print_r( $m );
+	return 'aaa ';
+} ,'strlen(substr("ddd",0,5))+1');
+*/
 $name ='Yang Qing-rong';
 
 
-echo $template->fetch('demo.hello',compact('name'));
+echo $template->fetch('demo.function_prefix',compact('name'));
 
 ?>

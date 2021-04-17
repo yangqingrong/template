@@ -1,0 +1,30 @@
+hello,{{$name}}!
+
+<br />
+
+name is 
+
+@php
+
+$_ .= $name;
+
+
+@endphp
+
+
+<br />
+
+1+1 = 
+
+@php
+
+$_ .= 1+1;;
+
+
+@endphp
+
+<hr />
+
+@php   for( $i= 0; $i< 5; $i++ ){ @endphp
+	{{$i+1}} , 
+@php } @endphp
