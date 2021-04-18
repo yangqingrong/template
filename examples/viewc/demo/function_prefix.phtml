@@ -6,12 +6,20 @@ public function M($V){
 extract($V);
 $_ ='';
 $_ .= ' ouput string length of sub-string "hello,worlds": <br /> ';
- $_ .=  htmlspecialchars( w_strlen  ( w_substr("hello,worlds",0,10))  ); 
+ $_ .=  htmlspecialchars( strlen  ( substr("hello,worlds",0,10))  ); 
 $_ .= ' <hr /> ';
  $_ .=  
-w_substr("<h1>hello,worlds</h1>",0 ,100 )
+substr("<h1>hello,worlds</h1>",0 ,100 )
   ; 
 $_ .= ' ';
+ 
+
+$obj =new stdClass();
+$obj->id=1;
+$_ .= $obj->id;
+
+ 
+
 return $_;
 } 
 

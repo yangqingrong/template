@@ -119,8 +119,12 @@ class Parser {
             $tk_id = intval($tk[0]);
             if ($tk_id == T_STRING) {
                 if (
+                        
+                (
                         ( isset($tokens[$i + 1]) && $tokens[$i + 1] == '(') ||
                         ( isset($tokens[$i + 2]) && $tokens[$i + 2] == '(' )
+                 ) && ( is_array($tokens[$i - 1]) == false || $tokens[$i - 1][0] != T_OBJECT_OPERATOR ) // Not $this->hello()!
+                        && ( @ $tokens[$i - 2][0]  != T_NEW )
                 ) {
                     $tokens[$i][1] = $function_prefix . $tk[1];
                 }
