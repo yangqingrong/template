@@ -40,8 +40,9 @@ $config =[
 	 'reduce_white_chars' => true,
    //enable tags: @php and @endphp 
    'enable_php_tag' => true,
-   //function name prefix, default is blank. eg: 'w_'
-   'function_prefix' => 'w_',
+   //function name prefix, eg: 'w_', default value is empty string.
+   //'function_prefix' => 'w_',
+   'function_prefix' => '',
 
 
 ];

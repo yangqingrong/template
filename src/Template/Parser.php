@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Wudimei Template Engine
  * Copyright (c) 2020 Yang Qing-rong <yangqingrong@wudimei.com>
@@ -6,6 +7,7 @@
  * @price 0.00    free of charge forever!
  * 
  */
+
 namespace Wudimei\Template;
 
 class Parser {
@@ -38,11 +40,10 @@ class Parser {
             } elseif ($tag == 'AT') {
                 $code = '$_ .=\'@\'; ';
             } elseif ($tag == 'PHP') {
-                 if ($this->template->config('enable_php_tag') == true) {
+                if ($this->template->config('enable_php_tag') == true) {
                     $code = $this->php($src);
-                }
-                else{
-                   $code = '';
+                } else {
+                    $code = '';
                 }
             } elseif (in_array($tag, ['KEEP', 'PLAIN'])) {
                 if ($this->template->config('reduce_white_chars') == true && $tag == 'PLAIN') {
@@ -50,19 +51,19 @@ class Parser {
                 }
                 $code = '$_ .= ' . var_export($src, true) . ';';
             } elseif ($tag == 'OUT') {
-                $src = $this->handleFunctionPrefix( $src);
+                $src = $this->handleFunctionPrefix($src);
                 $code = $this->php('$_ .=  htmlspecialchars(' . $src . ');');
             } elseif ($tag == 'OUT_UNESCAPED') {
-                $src = $this->handleFunctionPrefix( $src);
+                $src = $this->handleFunctionPrefix($src);
                 $code = $this->php('$_ .= ' . $src . ';');
             } elseif ($tag == 'OP') {
                 $name = $t['NAME'];
                 $args = $t['ARGS'];
                 if (in_array($name, ['if'])) {
-                    $args = $this->handleFunctionPrefix( $args);
+                    $args = $this->handleFunctionPrefix($args);
                     $code = $this->php($name . '( ' . $args . ' ){ ');
                 } elseif (in_array($name, ['elseif'])) {
-                    $args = $this->handleFunctionPrefix( $args);
+                    $args = $this->handleFunctionPrefix($args);
                     $code = $this->php('}' . $name . '( ' . $args . ' ){ ');
                 } elseif (in_array($name, ['else'])) {
                     $code = $this->php('}' . $name . '{ ');
@@ -70,8 +71,8 @@ class Parser {
                     $code = $this->php('}');
                 } elseif (in_array($name, ['foreach'])) {
                     list($data, $item) = preg_split('#\s+as\s+#i', $args);
-                    $args = $this->handleFunctionPrefix( $args);
-                    $data = $this->handleFunctionPrefix( $data);
+                    $args = $this->handleFunctionPrefix($args);
+                    $data = $this->handleFunctionPrefix($data);
                     $c = 'if( !empty(' . $data . ')){';
                     $c .= 'foreach(' . $args . '){';
                     $code = $this->php($c);
@@ -105,25 +106,47 @@ class Parser {
     }
 
     protected function handleFunctionPrefix($code) {
-        
-        $function_prefix = trim($this->template->config('function_prefix') );
-        if ( $function_prefix == '') {
-           
-            
-            return ' ' . $code . ' ';
-        }
-        else{
-             //echo $function_prefix . ' ';
-             $code = preg_replace( '#([a-zA-Z_][a-zA-Z_0-9]*)\s*\(#i', $function_prefix . "$1(", $code);
-            return ' ' . $code . ' ';
-        }
-    }
-    
-     protected function php($code) {
 
+        $function_prefix = trim($this->template->config('function_prefix'));
+        if ($function_prefix == '') {
             return ' ' . $code . ' ';
+        }
+
+        $tokens = token_get_all('<' . '?php ' . $code);
+
+        foreach ($tokens as $i => $tk) {
+            $tk_id = intval($tk[0]);
+            if ($tk_id == T_STRING) {
+                if (
+                        ( isset($tokens[$i + 1]) && $tokens[$i + 1] == '(') ||
+                        ( isset($tokens[$i + 2]) && $tokens[$i + 2] == '(' )
+                ) {
+                    $tokens[$i][1] = $function_prefix . $tk[1];
+                }
+            }
+        }
+        $new_code = '';
+
+        foreach ($tokens as $i => $tk) {
+            $tk_id = intval($tk[0]);
+            if ($tk_id == 379)
+                continue;//skip php tag
+            if (is_array($tk)) {
+                $new_code .= $tk[1];
+            }
+            if (is_string($tk)) {
+                $new_code .= $tk;
+            }
+        }
+
+        return ' ' . $new_code . ' ';
     }
-    
+
+    protected function php($code) {
+
+        return ' ' . $code . ' ';
+    }
+
     protected function parse_template_struct($tks) {
         $section = 'M';
         $sections = [$section => []];
