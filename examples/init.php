@@ -41,8 +41,8 @@ $config =[
    //enable tags: @php and @endphp 
    'enable_php_tag' => true,
    //function name prefix, eg: 'w_', default value is empty string.
-   //'function_prefix' => 'w_',
-   'function_prefix' => '',
+   'function_prefix' => 'w_',
+   //'function_prefix' => '',
 
 
 ];

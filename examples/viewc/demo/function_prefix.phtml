@@ -6,10 +6,10 @@ public function M($V){
 extract($V);
 $_ ='';
 $_ .= ' ouput string length of sub-string "hello,worlds": <br /> ';
- $_ .=  htmlspecialchars( strlen  ( substr("hello,worlds",0,10))  ); 
+ $_ .=  htmlspecialchars( w_strlen  ( w_substr("hello,worlds",0,10))  ); 
 $_ .= ' <hr /> ';
  $_ .=  
-substr("<h1>hello,worlds</h1>",0 ,100 )
+w_substr("<h1>hello,worlds</h1>",0 ,100 )
   ; 
 $_ .= ' ';
 return $_;

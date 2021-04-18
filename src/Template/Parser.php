@@ -83,6 +83,7 @@ class Parser {
 
                     $code = $this->php('}}');
                 } elseif ($name == 'include') {
+                    
                     $code = '$inc_args =[' . $args . '];' . "\n\n";
 
                     preg_match('#\'([^\']+)\'#A', $args, $a);
@@ -113,7 +114,7 @@ class Parser {
         }
 
         $tokens = token_get_all('<' . '?php ' . $code);
-
+        //echo '<pre>';  print_r($tokens); echo '</pre>';
         foreach ($tokens as $i => $tk) {
             $tk_id = intval($tk[0]);
             if ($tk_id == T_STRING) {
@@ -129,7 +130,7 @@ class Parser {
 
         foreach ($tokens as $i => $tk) {
             $tk_id = intval($tk[0]);
-            if ($tk_id == 379)
+            if ($i == 0)
                 continue;//skip php tag
             if (is_array($tk)) {
                 $new_code .= $tk[1];
@@ -138,6 +139,8 @@ class Parser {
                 $new_code .= $tk;
             }
         }
+        
+      //  echo '【'. $new_code .'】';
 
         return ' ' . $new_code . ' ';
     }
