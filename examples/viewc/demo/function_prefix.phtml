@@ -12,13 +12,19 @@ $_ .= ' <hr /> ';
 substr("<h1>hello,worlds</h1>",0 ,100 )
   ; 
 $_ .= ' ';
- 
+  
 
 $obj =new stdClass();
 $obj->id=1;
 $_ .= $obj->id;
 
- 
+
+$t = new Test();
+$_ .= $t->a();
+
+$_ .= Test::b();
+
+  
 
 return $_;
 } 

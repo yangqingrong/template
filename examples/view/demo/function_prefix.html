@@ -15,4 +15,10 @@ $obj =new stdClass();
 $obj->id=1;
 $_ .= $obj->id;
 
+
+$t = new Test();
+$_ .= $t->a();
+
+$_ .= Test::b();
+
 @endphp

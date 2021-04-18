@@ -9,7 +9,24 @@
 require_once __DIR__ . '/init.php';
 require_once __DIR__ . '/functions.php';
 
- 
+class Test{
+	function a(){
+		return 'call $t->a(); ';
+	}
+
+	static function b(){
+		return 'call Test::b();';
+	}
+
+	function w_a(){
+		return 'call $t->w_a(); ';
+	}
+
+	static function w_b(){
+		return 'call Test::w_b();';
+	}
+}
+
 $name ='Yang Qing-rong';
 
 

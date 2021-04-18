@@ -41,6 +41,7 @@ class Parser {
                 $code = '$_ .=\'@\'; ';
             } elseif ($tag == 'PHP') {
                 if ($this->template->config('enable_php_tag') == true) {
+                     $src = $this->handleFunctionPrefix($src);
                     $code = $this->php($src);
                 } else {
                     $code = '';
@@ -114,7 +115,7 @@ class Parser {
         }
 
         $tokens = token_get_all('<' . '?php ' . $code);
-        //echo '<pre>';  print_r($tokens); echo '</pre>';
+       //echo '<pre>';  print_r($tokens); echo '</pre>';
         foreach ($tokens as $i => $tk) {
             $tk_id = intval($tk[0]);
             if ($tk_id == T_STRING) {
@@ -123,7 +124,8 @@ class Parser {
                 (
                         ( isset($tokens[$i + 1]) && $tokens[$i + 1] == '(') ||
                         ( isset($tokens[$i + 2]) && $tokens[$i + 2] == '(' )
-                 ) && ( is_array($tokens[$i - 1]) == false || $tokens[$i - 1][0] != T_OBJECT_OPERATOR ) // Not $this->hello()!
+                 ) 
+                        // && ( is_array($tokens[$i - 1]) == false || $tokens[$i - 1][0] != T_OBJECT_OPERATOR ) // Not $this->hello()!
                         && ( @ $tokens[$i - 2][0]  != T_NEW )
                 ) {
                     $tokens[$i][1] = $function_prefix . $tk[1];

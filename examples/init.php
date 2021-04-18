@@ -40,9 +40,17 @@ $config =[
 	 'reduce_white_chars' => true,
    //enable tags: @php and @endphp 
    'enable_php_tag' => true,
-   //function name prefix, eg: 'w_', default value is empty string.
-  // 'function_prefix' => 'w_',
-   'function_prefix' => '',
+
+   /**
+   *  function_prefix
+
+   function/method name prefix, eg: 'w_', default value is empty string.
+
+    if function_prefix set as 'w_' ,in template, call test() will become w_test();$t->a() become $t->w_a(); Test::b() become Test::w_b();
+
+    */
+ // 'function_prefix' => 'w_',
+     'function_prefix' => '',
 
 
 ];
