@@ -25,9 +25,14 @@ class Lexer {
             '#^@\s*([a-zA-Z0-9\_]+)\s*(\((([^()]|(?R))*)?\))?#' => 'OP',
             '#^\{\{([^}]+)\}\}#' => 'OUT',
             '#^\{\!\!([^!]+)\!\!\}#' => 'OUT_UNESCAPED',
-            '#^[^@\{]+#' => 'PLAIN',
+             '#^@{1}#msA' => 'PLAIN', //one @
+            '#^\{[^\{!]+#' => 'PLAIN',//js
+            '#[^@\{]+#' => 'PLAIN',//other text
+           
+            
         ];
         $s = $str;
+        $loop_count =0;
         while (strlen($s) > 0) {
 
             foreach ($parr as $p => $tag) {
@@ -65,7 +70,14 @@ class Lexer {
                     
                     $arr[] = $t;
                     break 1;
-                }
+                } 
+            }
+            $loop_count++;
+            if( $loop_count>10000){
+                echo $loop_count . ' '. strlen($s);
+                print_r( $arr );
+                
+                break;
             }
         }
         return $arr;

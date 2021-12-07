@@ -49,9 +49,9 @@ $config =[
     if function_prefix set as 'w_' ,in template, call test() will become w_test();$t->a() become $t->w_a(); Test::b() become Test::w_b();
 
     */
- // 'function_prefix' => 'w_',
+  // 'function_prefix' => 'w_',
      'function_prefix' => '',
-
+     'debug' => true
 
 ];
 

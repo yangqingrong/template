@@ -8,28 +8,29 @@ $_ ='';
 $_ .= 'hello,';
  $_ .=  htmlspecialchars( $name ); 
 $_ .= '! <br /> name is ';
- 
+  
 
 $_ .= $name;
 
 
- 
+  
 
 $_ .= '<br /> 1+1 = ';
- 
+  
 
 $_ .= 1+1;;
 
 
- 
+  
 
 $_ .= '<hr /> ';
-    for( $i= 0; $i< 5; $i++ ){  
+     for( $i= 0; $i< 5; $i++ ){ 
+  
 
  $_ .=  htmlspecialchars( $i+1 ); 
 $_ .= ' , ';
-  }  
-
+    
+$_ .= ' } ';
 return $_;
 } 
 

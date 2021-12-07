@@ -219,6 +219,8 @@ class Parser {
             return '';
         }
         $cls = str_replace('.', '_', $view);
+        $cls = str_replace('/', '_', $cls);
+        $cls = str_replace('\\', '_', $cls);
         return 'view_' . $cls;
     }
 

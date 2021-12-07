@@ -57,12 +57,14 @@ class Engine {
         unset($vars['V']);
         $cpath = $this->getCompiledPath($view);
         $require_compile = false;
-        if (file_exists($cpath) == false) {
-            $require_compile = true;
-        }
+        
         if ($this->config['force_compile'] == true) {
             $require_compile = true;
-        } elseif ($this->config['compile_check'] == true) {
+        }
+        elseif (file_exists($cpath) == false) {
+            $require_compile = true;
+        }
+        elseif ($this->config['compile_check'] == true) {
             $view_path = $this->getViewPath($view);
             if (filemtime($view_path) > filemtime($cpath)) {
                 $require_compile = true;
