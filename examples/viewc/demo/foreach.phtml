@@ -1,6 +1,6 @@
 <?php 
 
-class view_demo_foreach{ 
+if (class_exists('view_demo_foreach') == false ){ class view_demo_foreach{ 
 
 public function M($V){ 
 extract($V);
@@ -8,7 +8,7 @@ $_ ='';
 $_ .= '<table border="1"> ';
  if( !empty( $data )){foreach( $data as $row ){ 
 $_ .= ' ';
- if(  $row->id > 0  ){  
+ if(  ($row->id > 0)  ){  
 $_ .= ' <tr> <td>';
  $_ .=  htmlspecialchars( $row->id  ); 
 $_ .= '</td> <td>';
@@ -23,4 +23,4 @@ return $_;
 } 
 
 
-}  ?>
+} }  ?>

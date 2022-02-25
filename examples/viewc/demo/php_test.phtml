@@ -1,6 +1,6 @@
 <?php 
 
-class view_demo_php_test{ 
+if (class_exists('view_demo_php_test') == false ){ class view_demo_php_test{ 
 
 public function M($V){ 
 extract($V);
@@ -24,15 +24,14 @@ $_ .= 1+1;;
   
 
 $_ .= '<hr /> ';
-     for( $i= 0; $i< 5; $i++ ){ 
+     for( $i= 0; $i< 5; $i++ ){  
+ 
+	$_ .= $i .'<br />';
+ }
   
 
- $_ .=  htmlspecialchars( $i+1 ); 
-$_ .= ' , ';
-    
-$_ .= ' } ';
 return $_;
 } 
 
 
-}  ?>
+} }  ?>

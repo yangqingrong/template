@@ -1,6 +1,6 @@
 <?php 
 
-class view_layout_default{ 
+if (class_exists('view_layout_default') == false ){ class view_layout_default{ 
 
 public function M($V){ 
 extract($V);
@@ -30,9 +30,9 @@ return $_;
 } 
 
 
-}  ?><?php 
+} }  ?><?php 
 
-class view_demo_op_parent extends view_layout_default{ 
+if (class_exists('view_demo_op_parent') == false ){ class view_demo_op_parent extends view_layout_default{ 
 
 public function M($V){ 
   return parent::M($V);
@@ -59,4 +59,4 @@ return $_;
 } 
 
 
-}  ?>
+} }  ?>

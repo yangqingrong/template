@@ -1,6 +1,6 @@
 <?php 
 
-class view_demo_keep{ 
+if (class_exists('view_demo_keep') == false ){ class view_demo_keep{ 
 
 public function M($V){ 
 extract($V);
@@ -12,9 +12,9 @@ $_ .='@';
 $_ .= 'endkeep</h3> ';
  $_ .=  htmlspecialchars( $name ); 
 $_ .= ' ';
- 
+  
   $_ .= $name;
- 
+  
 
 $_ .= '<hr /> <h3>keep it as original looking </h3> ';
 $_ .= '
@@ -40,4 +40,4 @@ return $_;
 } 
 
 
-}  ?>
+} }  ?>

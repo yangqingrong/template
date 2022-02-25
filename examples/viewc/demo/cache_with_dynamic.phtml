@@ -1,6 +1,6 @@
 <?php 
 
-class view_layout_default{ 
+if (class_exists('view_layout_default') == false ){ class view_layout_default{ 
 
 public function M($V){ 
 extract($V);
@@ -30,9 +30,9 @@ return $_;
 } 
 
 
-}  ?><?php 
+} }  ?><?php 
 
-class view_demo_cache_with_dynamic extends view_layout_default{ 
+if (class_exists('view_demo_cache_with_dynamic') == false ){ class view_demo_cache_with_dynamic extends view_layout_default{ 
 
 public function M($V){ 
   return parent::M($V);
@@ -51,7 +51,7 @@ public function content($V){
 extract($V);
 $_ ='';
 $_ .= ' <table border="1" width="100%"> <tr> <td><b>Clock:';
- $_ .=   w_date('Y-m-d H:i:s')  ; 
+ $_ .=   date('Y-m-d H:i:s')  ; 
 $_ .= '</b></td> </tr> <tr> <td height="150">';
  $_ .=   $content  ; 
 $_ .= '</td> </tr> <tr> <td>Email: yangqingrong';
@@ -61,4 +61,4 @@ return $_;
 } 
 
 
-}  ?>
+} }  ?>

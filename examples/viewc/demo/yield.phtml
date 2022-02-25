@@ -1,6 +1,6 @@
 <?php 
 
-class view_layout_yield{ 
+if (class_exists('view_layout_yield') == false ){ class view_layout_yield{ 
 
 public function M($V){ 
 extract($V);
@@ -30,9 +30,9 @@ return $_;
 } 
 
 
-}  ?><?php 
+} }  ?><?php 
 
-class view_demo_yield extends view_layout_yield{ 
+if (class_exists('view_demo_yield') == false ){ class view_demo_yield extends view_layout_yield{ 
 
 public function M($V){ 
   return parent::M($V);
@@ -59,4 +59,4 @@ return $_;
 } 
 
 
-}  ?>
+} }  ?>

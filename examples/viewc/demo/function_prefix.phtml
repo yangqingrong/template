@@ -1,6 +1,6 @@
 <?php 
 
-class view_demo_function_prefix{ 
+if (class_exists('view_demo_function_prefix') == false ){ class view_demo_function_prefix{ 
 
 public function M($V){ 
 extract($V);
@@ -30,4 +30,4 @@ return $_;
 } 
 
 
-}  ?>
+} }  ?>

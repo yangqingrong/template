@@ -1,6 +1,6 @@
 <?php 
 
-class view_demo_hello{ 
+if (class_exists('view_demo_hello') == false ){ class view_demo_hello{ 
 
 public function M($V){ 
 extract($V);
@@ -12,4 +12,4 @@ return $_;
 } 
 
 
-}  ?>
+} }  ?>

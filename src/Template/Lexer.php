@@ -22,7 +22,7 @@ class Lexer {
              '#^@keep#is' => 'KEEP',
              '#^@comment#is' => 'COMMENT',
             '#^\{\{\-\-#is' => 'COMMENT2',
-            '#^@\s*([a-zA-Z0-9\_]+)\s*(\((([^()]|(?R))*)?\))?#' => 'OP',
+            '#^@\s*([a-zA-Z0-9\_]+)\s*#' => 'OP',
             '#^\{\{([^}]+)\}\}#' => 'OUT',
             '#^\{\!\!([^!]+)\!\!\}#' => 'OUT_UNESCAPED',
              '#^@{1}#msA' => 'PLAIN', //one @
@@ -60,8 +60,22 @@ class Lexer {
                               $s = substr( $s,$offset );
                         }
                     } elseif ($tag == 'OP') {
+                       
                         $t['NAME'] = $a[1][0];
-                        $t['ARGS'] = isset($a[3]) ? $a[3][0] : '';
+                        $t['ARGS'] = '';
+                        if( !in_array($t['NAME'] , ['endif','else','endforeach','endfor','endwhile','endsection'])){
+                           
+                            $matched_args = preg_match( '#^\(((?>[^()]+)|(?R))*\)#' , $s , $a2, PREG_OFFSET_CAPTURE );
+                              
+                            if( isset($a2[0][0]) ){
+                                $t['ARGS'] =   trim($a2[0][0] ," \t\r\n()");   
+                                //print_r( $a2 ); echo $s;
+                                $s = substr( $s,strlen($a2[0][0] ) );
+                                
+                            }
+                            
+                        }
+                        
                     } elseif ($tag == 'PLAIN') {
                         $t['SRC'] = $a[0][0];
                     } elseif (in_array($tag, ['OUT', 'OUT_UNESCAPED'])) {
@@ -80,6 +94,9 @@ class Lexer {
                 break;
             }
         }
+        
+          //print_r( $arr );
+        
         return $arr;
     }
 

@@ -1,14 +1,14 @@
 <?php 
 
-class view_demo_customize{ 
+if (class_exists('view_demo_customize') == false ){ class view_demo_customize{ 
 
 public function M($V){ 
 extract($V);
 $_ ='';
 $_ .= ' ';
- foreach(  $students as $stu ){ 
+ foreach( $students as $stu){ 
 $_ .= ' ';
- if(   $stu['id'] > 0  ){  
+ if(  $stu['id'] > 0  ){  
 $_ .= ' ';
  $_ .=  htmlspecialchars( $stu['id'] ); 
 $_ .= ' ';
@@ -21,4 +21,4 @@ return $_;
 } 
 
 
-}  ?>
+} }  ?>
