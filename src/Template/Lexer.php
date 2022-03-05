@@ -65,10 +65,16 @@ class Lexer {
                         $t['ARGS'] = '';
                         if( !in_array($t['NAME'] , ['endif','else','endforeach','endfor','endwhile','endsection'])){
                            
-                            $matched_args = preg_match( '#^\(((?>[^()]+)|(?R))*\)#' , $s , $a2, PREG_OFFSET_CAPTURE );
-                              
-                            if( isset($a2[0][0]) ){
-                                $t['ARGS'] =   trim($a2[0][0] ," \t\r\n()");   
+                            $matched_args = preg_match( '#\(((?>[^()]+)|(?R))*\)#' , $s , $a2, PREG_OFFSET_CAPTURE );
+                            //print_r( $a2 );echo '<br />';
+                           // echo $s; echo '<hr />';
+                            
+                            if( isset($a2[0][0]) && $a2[0][1] == 0 /* offset 0 */ ){
+                                preg_match('#^\((.+)\)$#', $a2[0][0],$a3);
+                                if( !empty( $a3 )){
+                                    $t['ARGS'] =   trim($a3[1] ," \t\r\n");   
+                                }
+                               // echo  $t['ARGS']; echo "<br />";
                                 //print_r( $a2 ); echo $s;
                                 $s = substr( $s,strlen($a2[0][0] ) );
                                 

@@ -7,5 +7,5 @@
  */
 
 
-preg_match_all('#\(((?>[^()]+)|(?R))*\)#','a(isset($score) || !isset($b)))b', $m);
+preg_match('#\(((?>[^()]+)|(?R))*\)#','(isset($score) || true) isset @endif', $m, PREG_OFFSET_CAPTURE);
 print_r( $m );

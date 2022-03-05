@@ -63,20 +63,24 @@ class Parser {
                 
                 if (in_array($name, ['if'])) {
                     $args = $this->handleFunctionPrefix($args);
-                    $code = $this->php($name . '( ' . $args . ' ){ ');
+                    $code = $this->php( 'if(' . $args . '){ ');
                 } elseif (in_array($name, ['elseif'])) {
                     $args = $this->handleFunctionPrefix($args);
-                    $code = $this->php('}' . $name . '( ' . $args . ' ){ ');
+                    $code = $this->php('}elseif( ' . $args . '){ ');
                 } elseif (in_array($name, ['else'])) {
-                    $code = $this->php('}' . $name . '{ ');
+                    $code = $this->php('}else{ ');
                 } elseif (in_array($name, ['endif'])) {
                     $code = $this->php('}');
                 } elseif (in_array($name, ['foreach'])) {
+                     preg_match("#\s*(.+)\s+as\s+(.+)\s*#i", $args, $m);
+                     $data = $m[1];
+                     $item = $m[2];
                     
-                    list($data, $item) = preg_split('#\s+as\s+#i', $args);
-                    $args = $this->handleFunctionPrefix($args);
+                    //list($data, $item) = preg_split('#\s+as\s+#i', $args);
+                    
+                   // $args = $this->handleFunctionPrefix($args);
                     $data = $this->handleFunctionPrefix($data);
-                    $c = 'if( !empty(' . $data . ')){';
+                    $c = 'if( !empty(' . $data . ') ){';
                     $c .= 'foreach(' . $args . '){';
                     $code = $this->php($c);
                 } elseif (in_array($name, ['foreachelse'])) {
@@ -86,11 +90,13 @@ class Parser {
 
                     $code = $this->php('}}');
                 } elseif ($name == 'include') {
-                    
-                    $code = '$inc_args =[' . $args . '];' . "\n\n";
+                    //echo $args;
+                    $code = '$inc_args =array(' . $args . ');' . "\n\n";
 
-                    preg_match('#\'([^\']+)\'#A', $args, $a);
-                    //print_r($a);
+                    preg_match('#\'([^\']+)\'#', $args, $a);
+                   // print_r($a);
+                     
+                    
                     $inc_name = trim($a[1], '"\'');
                     $this->_includes[$inc_name] = 1;
                     $cls = $this->className($inc_name);

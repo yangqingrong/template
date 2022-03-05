@@ -67,7 +67,7 @@ public function content($V){
 extract($V);
 $_ ='';
 $_ .= ' ';
-$inc_args =['components.nav',['date' => '2020-10-07','title'=>$title]];
+$inc_args =array('components.nav',['date' => '2020-10-07','title'=>$title]);
 
 $inc_obj =new view_components_nav();
 
@@ -77,9 +77,9 @@ $_ .=$inc_obj->M($inc_args[1]);
 $_ .= ' <h1> ';
  $_ .=  htmlspecialchars( $title ); 
 $_ .= ' </h1> <table border="1"> ';
- if( !empty( $data )){foreach( $data as $row ){ 
+ if( !empty( $data ) ){foreach($data as $row){ 
 $_ .= ' ';
- if(  $row->id > 0  ){  
+ if( $row->id > 0 ){  
 $_ .= ' <tr> <td>';
  $_ .=  htmlspecialchars( $row->id  ); 
 $_ .= '</td> <td>';
@@ -94,7 +94,7 @@ $_ .= '</table> ';
   
     
 
-$_ .= '"dfgg";?> <?= $n?> <?php echo $n;?> ';
+$_ .= '<hr /> <? $n="dfgg";?> <?= $n?> <?php echo $n;?> ';
 
 $_ .= ' ';
 $_ .= '

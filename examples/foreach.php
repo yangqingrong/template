@@ -11,7 +11,8 @@ require_once __DIR__ . '/init.php';
 
 
 $data =[];
-for( $i =1; $i<3;$i++){
+
+for( $i =1; $i<5;$i++){
 		$item =new stdClass();
 		$item->id=$i;
 		$item->name ='Yang Qing-rong'.$i;

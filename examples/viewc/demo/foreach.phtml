@@ -6,9 +6,9 @@ public function M($V){
 extract($V);
 $_ ='';
 $_ .= '<table border="1"> ';
- if( !empty( $data )){foreach( $data as $row ){ 
+ if( !empty( $data ) ){foreach($data as $row){ 
 $_ .= ' ';
- if(  ($row->id > 0)  ){  
+ if( $row->id > 0 ){  
 $_ .= ' <tr> <td>';
  $_ .=  htmlspecialchars( $row->id  ); 
 $_ .= '</td> <td>';
